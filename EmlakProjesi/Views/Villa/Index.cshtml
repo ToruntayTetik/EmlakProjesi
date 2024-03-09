@@ -3,6 +3,14 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+@if (TempData["Success"] != null)
+{
+    <h1>@TempData["Success"]</h1>
+}
+
+
+
+
 
 <div class="card shadow mb-4">
     <div class="card-header py-3">
@@ -46,8 +54,10 @@
                         <td>@item.Occupancy</td>
                         <td>@item.CreateDate</td>
                         <td>@item.UpdateDate</td>
-                        <td>Düzelt</td>
-                        <td>Silme</td>
+                            <td><a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Düzelt</a></td>
+                            <td><a asp-action ="Delete" asp-route-id="@item.Id" class="btn btn-danger">Silme</a>
+
+                        </td>
                     </tr>
                   }
 

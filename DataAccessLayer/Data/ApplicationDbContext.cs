@@ -10,9 +10,62 @@ namespace DataAccessLayer.Data
 {
     public class ApplicationDbContext : DbContext
     {
-       public ApplicationDbContext(DbContextOptions<ApplicationDbContext>options):base(options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
         }
-       public  DbSet<Villa> Villas { get; set; }
+        public DbSet<Villa> Villas { get; set; }
+        public DbSet<VillaNumber> VillaNumbers { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            //base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Villa>().HasData(
+                new Villa
+                {
+                    Id = 1,
+                    Name = "Royal Villas",
+                    Price = 1000,
+                    ImageUrl = "1.jpg",
+                    Occupancy = 1,
+                },
+                                new Villa
+                                {
+                                    Id = 2,
+                                    Name = "Royal Villas",
+                                    Price = 2000,
+                                    ImageUrl = "2.jpg",
+                                    Occupancy = 1,
+                                },
+                                                 new Villa
+                                                 {
+                                                     Id = 3,
+                                                     Name = "Royal Villas",
+                                                     Price = 3000,
+                                                     ImageUrl = "3.jpg",
+                                                     Occupancy = 1,
+                                                 }
+                                                 );
+
+
+
+
+            modelBuilder.Entity<VillaNumber>().HasData(
+                new VillaNumber
+                {
+                    Villa_Number = 101,
+                    VillaId = 1,
+                },
+                                new VillaNumber
+                                {
+                                    Villa_Number = 102,
+                                    VillaId = 2,
+                                },
+                                                new VillaNumber
+                                                {
+                                                    Villa_Number = 103,
+                                                    VillaId = 3,
+                                                }
+                );
+        }
     }
 }
+
